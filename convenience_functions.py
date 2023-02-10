@@ -9,7 +9,8 @@ def show_image(image,
                figsize=(10, 10),
                cmap='viridis', log=False, clip=True,
                show_colorbar=True, show_ticks=True,
-               fig=None, ax=None, input_ratio=None):
+               fig=None, ax=None, input_ratio=None,
+               clim=False, vmin=0, vmax=0):
     """
     Show an image in matplotlib with some basic astronomically-appropriat stretching.
 
@@ -89,6 +90,10 @@ def show_image(image,
 
     im = ax.imshow(reduced_data, origin='lower',
                    cmap=cmap, extent=extent, aspect='equal', **scale_args)
+    
+    if clim: 
+        im.set_clim(vmin,vmax)
+    
 
     if show_colorbar:
         # I haven't a clue why the fraction and pad arguments below work to make
